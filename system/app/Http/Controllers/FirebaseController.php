@@ -14,7 +14,7 @@ class FirebaseController extends Controller
     public function __construct(Database $database)
     {
         $this->database = $database;
-        $this->nama_tabel = 'dosen';
+        $this->tabel_dosen = 'dosen';
     }
 
 
@@ -26,7 +26,7 @@ class FirebaseController extends Controller
     // Dosen
     function dosen()
     {
-        $data['listDosen'] = $this->database->getReference($this->nama_tabel)->getValue();
+        $data['listDosen'] = $this->database->getReference($this->tabel_dosen)->getValue();
         return view('dosen.index', $data);
     }
 
@@ -42,7 +42,7 @@ class FirebaseController extends Controller
             'matakuliah' => $request->matakuliah,
             'bimbingan' => $request->bimbingan,
         ];
-        $postRef = $this->database->getReference($this->nama_tabel)->push($postData);
+        $postRef = $this->database->getReference($this->tabel_dosen)->push($postData);
 
         if ($postRef) {
             return redirect('dosen')->with('status', 'Data Dosen Berhasil di tambahkan');
