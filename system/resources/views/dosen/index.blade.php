@@ -56,7 +56,7 @@
       </div>
       <div class="card-body">
         @if(session('status'))
-        <h5 class="btn btn-danger">{{session('status')}}</h5>
+        <h5 class="alert alert-danger">{{session('status')}}</h5>
         @endif
         <table class="table table-bordered">
           <thead>
