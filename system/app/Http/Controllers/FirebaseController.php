@@ -34,6 +34,12 @@ class FirebaseController extends Controller
     {
         return view('dosen.create');
     }
+    function dosenEdit(Request $request)
+    {
+        $data['key'] = $key = $request->id;
+        $data['dosen'] = $this->database->getReference($this->tabel_dosen)->getChild($key)->getValue();
+        return view('dosen.edit', $data);
+    }
 
     function dosenStore(Request $request)
     {
@@ -48,6 +54,22 @@ class FirebaseController extends Controller
             return redirect('dosen')->with('status', 'Data Dosen Berhasil di tambahkan');
         } else {
             return redirect('dosen/tambah')->with('status', 'Data Dosen Gagal di tambahkan');
+        }
+    }
+    function dosenUpdate(Request $request, $id)
+    {
+        $key = $id;
+        $updateData = [
+            'nama' => $request->nama,
+            'matakuliah' => $request->matakuliah,
+            'bimbingan' => $request->bimbingan,
+        ];
+        $res_updated = $this->database->getReference($this->tabel_dosen . '/' . $key)->update($updateData);
+
+        if ($res_updated) {
+            return redirect('dosen')->with('status', 'Data Dosen Berhasil di Edit');
+        } else {
+            return redirect('dosen/edit')->with('status', 'Data Dosen Gagal di edit');
         }
     }
 

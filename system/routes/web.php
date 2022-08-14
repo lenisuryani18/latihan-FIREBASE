@@ -11,6 +11,8 @@ Route::get('dashboard', [FirebaseController::class, 'dashboard']);
 Route::get('dosen', [FirebaseController::class, 'dosen']);
 Route::get('dosen/tambah', [FirebaseController::class, 'dosenCreate']);
 Route::post('dosen/store', [FirebaseController::class, 'dosenStore']);
+Route::get('dosen/edit/{id}', [FirebaseController::class, 'dosenEdit']);
+Route::put('dosen/update/{id}', [FirebaseController::class, 'dosenUpdate']);
 
 // mahasiswa
 Route::get('mahasiswa', [FirebaseController::class, 'mahasiswa']);

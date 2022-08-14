@@ -47,46 +47,34 @@
     </nav>
 
     <div class="d-flex justify-content-center align-items-center mt-5">
-      <h2>HALAMAN DOSEN</h2>
-
+      <h4>Edit Data Dosen</h4>
     </div>
     <div class="card">
       <div class="card-header">
-        <a href="{{url('dosen/tambah')}}" class="btn btn-primary btn-sm float-right">Tambah Dosen</a>
-      </div>
-      <div class="card-body">
         @if(session('status'))
         <h5 class="btn btn-danger">{{session('status')}}</h5>
         @endif
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama</th>
-              <th>Mengampu Matakuliah</th>
-              <th>Jumlah Mahasiswa dibimbing</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            @forelse($listDosen as $key => $x)
-            <tr>
-              <td>{{$loop->iteration}}</td>
-              <td>{{ $x['nama'] }}</td>
-              <td>{{ $x['matakuliah'] }}</td>
-              <td>{{ $x['bimbingan'] }}</td>
-              <td>
-                <a href="{{ url('dosen/edit/'.$key) }}" class="btn btn-success btn-sm">Edit</a>
-                <a href="" class="btn btn-danger btn-sm">hapus</a>
-              </td>
-            </tr>
-            @empty
-            <tr>
-              <td colspan="4">-</td>
-            </tr>
-            @endforelse
-          </tbody>
-        </table>
+      </div>
+      <div class="card-body">
+        <form action="{{url('dosen/update/'.$key)}}" method="POST">
+          @csrf
+          @method('PUT')
+
+          <div class="form-group">
+            <label>Nama</label>
+            <input type="text" name="nama" value="{{ $dosen['nama'] }}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Matakuliah yg di ampu</label>
+            <input type="text" name="matakuliah" value="{{ $dosen['matakuliah'] }}" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Jumlah Mahasiswa Bimbingan</label>
+            <input type="number" name="bimbingan" value="{{ $dosen['bimbingan'] }}" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
       </div>
     </div>
   </div>
