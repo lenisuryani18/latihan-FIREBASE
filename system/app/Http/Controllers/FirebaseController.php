@@ -73,5 +73,17 @@ class FirebaseController extends Controller
         }
     }
 
+    function dosenHapus(Request $request)
+    {
+        $key = $request->id;
+        $remove = $this->database->getReference($this->tabel_dosen . '/' . $key)->remove();
+
+        if ($remove) {
+            return redirect('dosen')->with('status', 'Data Dosen Berhasil di Hapus');
+        } else {
+            return redirect('dosen')->with('status', 'Data Dosen Gagal di Hapus');
+        }
+    }
+
     // akhir Dosen
 }

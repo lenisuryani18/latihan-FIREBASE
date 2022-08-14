@@ -13,6 +13,7 @@ Route::get('dosen/tambah', [FirebaseController::class, 'dosenCreate']);
 Route::post('dosen/store', [FirebaseController::class, 'dosenStore']);
 Route::get('dosen/edit/{id}', [FirebaseController::class, 'dosenEdit']);
 Route::put('dosen/update/{id}', [FirebaseController::class, 'dosenUpdate']);
+Route::get('dosen/hapus/{id}', [FirebaseController::class, 'dosenHapus']);
 
 // mahasiswa
 Route::get('mahasiswa', [FirebaseController::class, 'mahasiswa']);

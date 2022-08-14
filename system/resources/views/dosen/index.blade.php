@@ -77,7 +77,7 @@
               <td>{{ $x['bimbingan'] }}</td>
               <td>
                 <a href="{{ url('dosen/edit/'.$key) }}" class="btn btn-success btn-sm">Edit</a>
-                <a href="" class="btn btn-danger btn-sm">hapus</a>
+                <a href="{{ url('dosen/hapus/'.$key) }}" class="btn btn-danger btn-sm">hapus</a>
               </td>
             </tr>
             @empty
